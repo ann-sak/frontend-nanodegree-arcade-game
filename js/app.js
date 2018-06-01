@@ -12,7 +12,7 @@ var Enemy = function(x,y) {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.speed = 15 * Math.random();
-    this.width = 10;
+    this.width = 50;
     this.height = 80;
 
 }
@@ -47,7 +47,7 @@ var Player = function(x,y) {
 this.sprite = 'images/char-horn-girl.png';
 this.x = x;
 this.y = y;
-this.width = 10;
+this.width = 50;
 this.height = 80;
 
 }
@@ -56,6 +56,8 @@ Player.prototype.update = function(dt){
 
 
 this.dt = dt;
+checkCollisions();
+win();
 };
 
 Player.prototype.render = function() {
@@ -81,7 +83,6 @@ Player.prototype.handleInput = function(direction){
       this.y = 400;
     } else {
       this.y += 80;
-      console.log(this.y);
     }
   }
 
@@ -90,7 +91,6 @@ Player.prototype.handleInput = function(direction){
       this.y = 0;
     } else {
       this.y -= 80;
-      console.log(this.y);
     }
   }
 
@@ -99,7 +99,6 @@ Player.prototype.handleInput = function(direction){
       this.x = 400;
     } else {
       this.x += 100;
-      console.log(this.x);
     }
   }
 
@@ -108,7 +107,6 @@ Player.prototype.handleInput = function(direction){
       this.x = 0;
     } else {
       this.x -= 100;
-      console.log(this.x);
     }
   }
 };
@@ -122,16 +120,21 @@ function reset (x, y) {
 
 function checkCollisions() {
     for (i = 0; i < allEnemies.length; i++) {
-      if (allEnemies[i].x < player.x + 10 &&
-          allEnemies[i].x + 10 > player.x &&
+      if (allEnemies[i].x < player.x + 50 &&
+          allEnemies[i].x + 50 > player.x &&
           allEnemies[i].y < player.y + 80 &&
           allEnemies[i].y + 80 > player.y) {
-            console.log('collision');
             reset(200,400);
           }
     }
 };
-checkCollisions();
+
+function win() {
+  if(player.y === 0) {
+    console.log('win');
+  }
+}
+
 
 
 
