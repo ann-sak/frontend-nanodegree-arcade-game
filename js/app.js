@@ -12,8 +12,8 @@ var Enemy = function(x,y) {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.speed = 15 * Math.random();
-    this.w = 10;
-    this.h = 80;
+    this.width = 10;
+    this.height = 80;
 
 }
 
@@ -27,13 +27,18 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 401){
        this.x = 0;
    }
+
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+var enemy1 = new Enemy(0,80);
+var enemy2 = new Enemy(0,240);
+var enemy3 = new Enemy(0,160);
 
+const allEnemies = [enemy1, enemy2, enemy3];
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -42,13 +47,14 @@ var Player = function(x,y) {
 this.sprite = 'images/char-horn-girl.png';
 this.x = x;
 this.y = y;
-//this.speed = speed;
+this.width = 10;
+this.height = 80;
+
 }
 
 Player.prototype.update = function(dt){
 
-/* this.x *= (dt);
-this.y *= (dt); */
+
 this.dt = dt;
 };
 
@@ -57,12 +63,10 @@ Player.prototype.render = function() {
 ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-var enemy1 = new Enemy(0,60);
-var enemy2 = new Enemy(0,240);
-var enemy3 = new Enemy(0,150);
 
-const allEnemies = [enemy1, enemy2, enemy3];
-var player = new Player(200,400);
+
+
+
 
 
 
@@ -76,7 +80,8 @@ Player.prototype.handleInput = function(direction){
     if (this.y === 400) {
       this.y = 400;
     } else {
-      this.y += 100;
+      this.y += 80;
+      console.log(this.y);
     }
   }
 
@@ -84,7 +89,8 @@ Player.prototype.handleInput = function(direction){
     if (this.y === 0) {
       this.y = 0;
     } else {
-      this.y -= 100;
+      this.y -= 80;
+      console.log(this.y);
     }
   }
 
@@ -93,6 +99,7 @@ Player.prototype.handleInput = function(direction){
       this.x = 400;
     } else {
       this.x += 100;
+      console.log(this.x);
     }
   }
 
@@ -101,11 +108,30 @@ Player.prototype.handleInput = function(direction){
       this.x = 0;
     } else {
       this.x -= 100;
+      console.log(this.x);
     }
   }
 };
 
+var player = new Player(200,400);
 
+function reset (x, y) {
+    player.x = x;
+    player.y = y;
+}
+
+function checkCollisions() {
+    for (i = 0; i < allEnemies.length; i++) {
+      if (allEnemies[i].x < player.x + 10 &&
+          allEnemies[i].x + 10 > player.x &&
+          allEnemies[i].y < player.y + 80 &&
+          allEnemies[i].y + 80 > player.y) {
+            console.log('collision');
+            reset(200,400);
+          }
+    }
+};
+checkCollisions();
 
 
 
