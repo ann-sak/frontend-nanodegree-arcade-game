@@ -106,7 +106,7 @@ function checkCollisions() {
 //Reset the game after the player reaches the water
 function win() {
   if(player.y === 0) {
-    reset(200,400);
+    setTimeout(function () {reset(200,400)}, 500);
   }
 }
 
