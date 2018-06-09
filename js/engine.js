@@ -154,6 +154,8 @@ var Engine = (function(global) {
         });
 
         player.render();
+        lives.render();
+        score.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -172,6 +174,7 @@ var Engine = (function(global) {
         'images/stone-block.png',
         'images/water-block.png',
         'images/grass-block.png',
+        'images/Heart.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
         'images/char-horn-girl.png'
