@@ -127,7 +127,7 @@ class Lives {
         this.x = 10;
         this.y = 0;
 
-        this.count = 12;
+        this.count = 5;
         this.sprite = 'images/Heart.png';
 
         const spriteWidth = 40;
@@ -139,7 +139,7 @@ class Lives {
     }
 
     reset() {
-        this.count = 12;
+        this.count = 5;
     }
 
     static get spriteWidth() {
@@ -165,7 +165,7 @@ var lives = new Lives();
 class Score {
     constructor() {
         this.x = 20;
-        this.y = 575;
+        this.y = 600;
 
         this.count = 0;
     }
@@ -175,9 +175,9 @@ class Score {
     }
 
     render() {
-        ctx.font = "20px Impact";
+        ctx.font = "10px Arial";
         ctx.fillText("SCORE:", this.x, this.y);
-        ctx.font = "25px Impact";
+        ctx.font = "15px Arial";
         ctx.fillText(this.count, this.x + 105, this.y);
     }
 }
