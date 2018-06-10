@@ -28,10 +28,12 @@ class Enemy{
 }
 
 // Enemies our player must avoid
-var enemy1 = new Enemy(0,80, Math.random() * 5 );
+var enemy1 = new Enemy(0,80, 0);
+var enemy2 = new Enemy(0,240,0);
+var enemy3 = new Enemy(0,160,0);
+/*var enemy1 = new Enemy(0,80, Math.random() * 5 );
 var enemy2 = new Enemy(0,240, Math.random() * 5 + 5);
-var enemy3 = new Enemy(0,160, Math.random() * 5 + 10);
-
+var enemy3 = new Enemy(0,160, Math.random() * 5 + 10);*/
 const allEnemies = [enemy1, enemy2, enemy3];
 
 class Player {
@@ -58,17 +60,24 @@ class Player {
             }
 
             if (direction === 'up') {
-              if (this.y === 0) {
-                this.win = true;
-                setTimeout(() => {this.win = false}, 10);
-                this.y = 0;
-                console.log(this.y);
 
-              } else {
+              if (this.y > 0){
                 this.y -= 80;
                 console.log(this.y);
+
+                  if (this.y === 0) {
+                  this.y = 0;
+                  setTimeout(() => {
+                    this.win = true;
+                    setTimeout(() => {this.win = false}, 10);
+                  }, 100);
+                  console.log(this.y)
+                  }
               }
             }
+
+
+
 
             if (direction === 'right') {
               if (this.x === 400) {
