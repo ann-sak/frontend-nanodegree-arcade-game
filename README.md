@@ -1,3 +1,4 @@
+- Open index.html file
 - Use arrow keys (up, down, right, left) to move the character.
 - Your goal is to reach the water (the top of the screen) and avoid the collision with enemies crossing the screen.
 - After reaching the water, the player gets 500 of points and his hearts are restore. After that he starts again from the default position and can collect the points.
